@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .traffic-light {
+            width: 100px;
+            height: 300px;
+            background-color: black;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: gray;
+            transition: background-color 0.5s ease;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .light.off {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+
+<div class="traffic-light">
+    <div class="light red" id="redLight"></div>
+    <div class="light yellow" id="yellowLight"></div>
+    <div class="light green" id="greenLight"></div>
+</div>
+
+<script>
+    let redLight = document.getElementById("redLight");
+    let yellowLight = document.getElementById("yellowLight");
+    let greenLight = document.getElementById("greenLight");
+
+    let currentLight = "red"; // Starting with the red light
+
+    function switchLights() {
+        if (currentLight === "red") {
+            redLight.classList.add("off");
+            greenLight.classList.remove("off");
+            currentLight = "green";
+        } else if (currentLight === "green") {
+            greenLight.classList.add("off");
+            yellowLight.classList.remove("off");
+            currentLight = "yellow";
+        } else if (currentLight === "yellow") {
+            yellowLight.classList.add("off");
+            redLight.classList.remove("off");
+            currentLight = "red";
+        }
+    }
+
+    setInterval(switchLights, 3000); // Change the lights every 3 seconds
+</script>
+
+</body>
+</html>
